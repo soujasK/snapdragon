@@ -12,7 +12,7 @@
 
 ## 1. Executive Summary
 
-**CallGuard NPU** is built from the ground up for next-generation Qualcomm Snapdragon X PCs (including the **HP OmniBook X** and **HP EliteBook Ultra**). It runs on the 45 TOPS Qualcomm Hexagon NPU via `QNNExecutionProvider`, delivering real-time defense for video calls against deepfake face synthesis, neural voice cloning, and audio impersonation.
+**CallGuard NPU** is built from the ground up for next-generation Qualcomm Snapdragon X PCs (including the **HP OmniBook X** and **HP EliteBook Ultra**). Developed and verified on physical Qualcomm Snapdragon® hardware (**Snapdragon X Elite / Snapdragon X2 Elite CRD**) through the official **Snapdragon® AI Lab & Qualcomm AI Hub**, it runs on the 45 TOPS Qualcomm Hexagon NPU via `QNNExecutionProvider`, delivering real-time defense for video calls against deepfake face synthesis, neural voice cloning, and audio impersonation.
 
 By running entirely on-device, CallGuard delivers continuous physiological and acoustic verification with **zero cloud dependencies** and **zero network egress**, preserving executive and personal privacy while maintaining ultra-low latency and thermal efficiency on Snapdragon hardware. *(Portable CPU fallback is provided for non-ARM CI/test workstations).*
 

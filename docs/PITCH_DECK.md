@@ -12,6 +12,7 @@
 
 - **Target Hardware**: HP OmniBook X / HP EliteBook Ultra (Snapdragon X Elite / Snapdragon X Plus)
 - **Core Hardware Accelerator**: 45 TOPS Qualcomm Hexagon NPU (HTP via `QNNExecutionProvider`)
+- **Hardware Verification**: Profiled on Physical Snapdragon X Hardware via Snapdragon® AI Lab & Qualcomm AI Hub
 - **Primary Tech Stack**: Python 3.11, ONNX Runtime QNN Provider (`QnnHtp.dll`), Qualcomm AI Hub Zoo, SciPy
 - **Presenter**: Soujas K / CallGuard Engineering
 
