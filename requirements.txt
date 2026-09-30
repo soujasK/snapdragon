@@ -1,0 +1,35 @@
+# ==============================================================================
+# CallGuard NPU - Unified Requirements
+# ==============================================================================
+# Native dependencies for CallGuard NPU real-time multi-modal protection.
+#
+# WINDOWS ARM64 NOTES & OPTIMIZATIONS:
+# 1. OpenCV: Official 'opencv-python' binary wheels are NOT distributed for win_arm64.
+#    CallGuard utilizes its native cv2-free backend (callguard.vision.imgops)
+#    which uses Pillow, SciPy, NumPy, and PyAV, all of which publish official win_arm64 wheels.
+#    On x64 development machines, 'opencv-python-headless' is supported.
+# 2. Qualcomm NPU Acceleration:
+#    Install 'onnxruntime-qnn' on Snapdragon X platforms to enable QNNExecutionProvider
+#    targeting the Hexagon HTP NPU backend. Standard 'onnxruntime' provides CPU fallback.
+# ==============================================================================
+
+# Core Numerical & Signal Processing (Supported on win_arm64 & win_amd64)
+numpy>=1.24.0
+scipy>=1.11.0
+pillow>=10.0.0
+pyyaml>=6.0.0
+
+# ONNX Inference Engine (CPU fallback on x64; onnxruntime-qnn on Snapdragon X)
+onnxruntime>=1.17.0
+
+# Image & Video I/O
+# x64: opencv-python-headless
+# ARM64: av (PyAV) for cv2-free video streaming
+opencv-python-headless>=4.8.0; platform_machine != "ARM64" and platform_machine != "aarch64"
+av>=11.0.0; platform_machine == "ARM64" or platform_machine == "aarch64"
+
+# Audio Capture (Optional for live mic capture; file & synthetic modes require zero audio drivers)
+sounddevice>=0.4.6
+
+# Testing & Verification
+pytest>=8.0.0

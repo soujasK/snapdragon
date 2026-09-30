@@ -1,0 +1,60 @@
+# ==============================================================================
+# CallGuard NPU - Configuration File
+# ==============================================================================
+# Defines capture sources, hardware provider priorities, scheduler budget,
+# detection thresholds, and hysteresis window parameters.
+# ==============================================================================
+
+version: "1.0"
+
+capture:
+  video_fps: 30
+  audio_sample_rate: 16000
+  ring_buffer_video_capacity: 120
+  ring_buffer_audio_capacity: 160000 # 10 seconds of 16kHz mono audio
+  drop_oldest: true
+
+runtime:
+  provider_order:
+    - "QNNExecutionProvider"
+    - "CPUExecutionProvider"
+  qnn_options:
+    backend_path: "QnnHtp.dll"
+    htp_performance_mode: "burst"
+    htp_precision: "float16"
+  duty_cycle_budget: 0.60 # max 60% per second budget
+
+scheduler:
+  throttle_stages_order:
+    - "super_res"
+    - "low_light"
+    - "deepfake_cadence"
+  protected_stages:
+    - "landmarks"
+    - "captions"
+
+detection:
+  rppg:
+    min_bpm: 45
+    max_bpm: 180
+    snr_threshold_db: 1.5
+  audio:
+    flatness_threshold: 0.25
+    high_freq_cutoff_ratio: 0.08
+    min_jitter_threshold: 0.005
+  context_discounting:
+    low_light_discount: 0.25
+    bitrate_drop_discount: 0.30
+    stutter_discount: 0.30
+    multi_face_discount: 0.40
+
+hysteresis:
+  window_size: 5
+  enter_synthetic_threshold: 0.75
+  enter_synthetic_min_windows: 3
+  exit_synthetic_threshold: 0.50
+  exit_synthetic_min_windows: 4
+
+audit:
+  db_path: "callguard_audit.db"
+  enabled: true
