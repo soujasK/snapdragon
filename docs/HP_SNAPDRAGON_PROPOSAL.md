@@ -56,8 +56,8 @@ CallGuard solves false alarms by bridging video enhancement and biometric detect
 ## 6. How Judges Can Evaluate (Under 60 Seconds)
 ```powershell
 # 1. Clone repository & install dependencies
-git clone <YOUR_REPO_URL>
-cd CallGuard-NPU
+git clone https://github.com/soujasK/snapdragon.git
+cd snapdragon
 pip install -r requirements.txt
 
 # 2. Run automated test suite
