@@ -8,10 +8,10 @@
 
 ## Slide 1: Title Slide
 ### CallGuard NPU: Zero-Trust Biometric & Acoustic Verification Shield
-*Real-Time Deepfake Defense & Assistive Video Calling Engineered for Snapdragon-Powered HP PCs*
+*Built for Snapdragon® X, runs on the Hexagon NPU via QNN*
 
-- **Target Hardware**: HP OmniBook X / HP EliteBook Ultra
-- **Core Hardware Accelerator**: 45 TOPS Qualcomm Hexagon NPU (HTP)
+- **Target Hardware**: HP OmniBook X / HP EliteBook Ultra (Snapdragon X Elite / Snapdragon X Plus)
+- **Core Hardware Accelerator**: 45 TOPS Qualcomm Hexagon NPU (HTP via `QNNExecutionProvider`)
 - **Primary Tech Stack**: Python 3.11, ONNX Runtime QNN Provider (`QnnHtp.dll`), Qualcomm AI Hub Zoo, SciPy
 - **Presenter**: Soujas K / CallGuard Engineering
 
@@ -57,14 +57,19 @@ Instead of naive black-box thresholding, CallGuard bridges display enhancement w
 
 ---
 
-## Slide 6: Verification & Qualcomm AI Hub Hosted Benchmarks
-### Proven NPU Offloading on Snapdragon X2 Elite CRD & Validated Host Baseline
-- **19 of 19 Automated Tests Passing**: Ring buffer monotonicity, zero network egress, Bayesian calibration, and tamper-evident SHA-256 hash chains.
+## Slide 6: Snapdragon® X Hexagon NPU Benchmarks & Verification
+### Proven NPU Offloading on Snapdragon X2 Elite CRD with Host Baseline Comparison
 - **Qualcomm AI Hub Hosted Profiling (Snapdragon X2 Elite CRD)**:
-  - **100% NPU Acceleration**: All vision & biometric models run 100% on Hexagon NPU with 0 CPU ops.
+  - **100% NPU Acceleration**: All vision & biometric models execute 100% on Hexagon NPU with 0 CPU ops.
   - **Sum of Profiled Models**: **$\approx 3.9 - 5.8\text{ ms}$** total inference vs. 33.3 ms (30 FPS) budget (**>80% duty-cycle headroom**).
-  - **Verifiable Qualcomm Workbench Jobs**: Includes direct links for `mediapipe_face` (0.6ms), `mediapipe_selfie` (0.2ms INT8), and `quicksrnetmedium` (0.5ms).
-- **Host CPU Fallback Baseline**: Pipeline finishes in **~10.42 ms p50** with **0.00% frame drops**, proving seamless cross-platform execution.
+  - **Verifiable Qualcomm Workbench Jobs**:
+    - `mediapipe_face`: **0.6 ms** ([Job jgj7mx7xg](https://workbench.aihub.qualcomm.com/jobs/jgj7mx7xg/))
+    - `mediapipe_selfie`: **0.2 ms** INT8 / **0.4 ms** float ([Job jp41oqz1p](https://workbench.aihub.qualcomm.com/jobs/jp41oqz1p/))
+    - `zero_dce`: **1.4 ms** ([Job jpxlo71lp](https://workbench.aihub.qualcomm.com/jobs/jpxlo71lp/))
+    - `quicksrnetmedium`: **0.5 ms** ([Job jgd39wyrp](https://workbench.aihub.qualcomm.com/jobs/jgd39wyrp/))
+- **Developer Workstation Baseline Comparison (Host CPU Fallback)**:
+  - Host CPU baseline finishes in **~10.42 ms p50** with **0.00% frame drops**. *(Portable CPU fallback provided for non-ARM CI/test workstations).*
+- **19 of 19 Automated Tests Passing**: Cryptographic SHA-256 hash chains, ring buffer monotonicity, Bayesian calibration, and zero network egress.
 
 ---
 

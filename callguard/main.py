@@ -74,6 +74,10 @@ def main():
 
     # Instantiate pipeline
     pipeline = CallGuardPipeline(config=cfg, source=source)
+    qnn_backend = cfg.runtime.qnn_options.get("backend_path", "QnnHtp.dll") if isinstance(cfg.runtime.qnn_options, dict) else getattr(cfg.runtime.qnn_options, "backend_path", "QnnHtp.dll")
+    qnn_mode = cfg.runtime.qnn_options.get("htp_performance_mode", "burst") if isinstance(cfg.runtime.qnn_options, dict) else getattr(cfg.runtime.qnn_options, "htp_performance_mode", "burst")
+    print(f"[CallGuard] Target Architecture: Qualcomm Snapdragon X / Hexagon NPU")
+    print(f"[CallGuard] Execution Provider : {pipeline.hardware_label} (backend_path={qnn_backend}, mode={qnn_mode})")
     pipeline.start()
 
     print("[CallGuard] Pipeline active. Press Ctrl+C to terminate.")

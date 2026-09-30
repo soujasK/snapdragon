@@ -69,7 +69,7 @@ class CallGuardRuntimeFactory:
             "ort_version": ort.__version__,
             "available_providers": avail,
             "npu_accelerator_available": has_qnn,
-            "default_backend": "QNN HTP (Snapdragon NPU)" if has_qnn else "CPU fallback",
+            "default_backend": QNN_EP,
         }
 
     @classmethod

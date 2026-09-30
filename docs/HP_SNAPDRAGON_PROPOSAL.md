@@ -1,14 +1,16 @@
 # CallGuard NPU: Official Submission Proposal for Snapdragon-Powered HP PCs
 
+> **Built for Snapdragon® X, runs on the Hexagon NPU via QNN.**
+
 ## 1. Project Title & Tagline
 - **Project Title**: **CallGuard NPU: Zero-Trust Real-Time Biometric & Acoustic Verification Shield**
-- **Tagline**: An edge-first security and accessibility shield designed and optimized for Snapdragon-powered HP PCs to detect real-time video deepfakes and voice clones during live conference calls.
+- **Tagline**: Built for Snapdragon® X, runs on the Hexagon NPU via QNN to detect real-time video deepfakes and voice clones on live calls.
 
 ---
 
 ## 2. Target Device & Snapdragon Optimization
 - **Target Hardware**: **Snapdragon-Powered HP PCs** (engineered for **HP OmniBook X** and **HP EliteBook Ultra**, featuring Qualcomm Snapdragon X Elite / Snapdragon X Plus and the 45 TOPS Qualcomm Hexagon NPU).
-- **Core Hardware Accelerator**: 45 TOPS Qualcomm Hexagon NPU (HTP).
+- **Core Hardware Accelerator**: 45 TOPS Qualcomm Hexagon NPU (HTP via `QNNExecutionProvider`).
 - **Why It Is Optimized for HP Snapdragon PCs**:
   1. **All-Day Battery Life & Silent Operation**: Traditional deepfake detectors drain battery and force cooling fans into high gear on x86 machines. On Snapdragon-powered HP PCs, CallGuard offloads neural inference to the dedicated Hexagon NPU using `QNNExecutionProvider` (Qualcomm Neural Network execution provider with `QnnHtp.dll`).
   2. **Priority NPU Queue Scheduler**: Constrains total NPU duty cycle to $\le 60\%$ compute per second ($\sum \text{latency} \times \text{rate} \le 0.60$), guaranteeing the HP laptop remains cool and responsive even during multi-hour Zoom/Teams meetings.
@@ -52,10 +54,17 @@ CallGuard solves false alarms by bridging video enhancement and biometric detect
 
 ---
 
-## 5. Verification & Testing Evidence
-- **Qualcomm AI Hub Device Farm Profiling**: Neural models compiled and profiled on hosted Snapdragon X2 Elite hardware, achieving 100% NPU offload with a total model inference sum of $\approx 3.9 - 5.8\text{ ms}$ (well under the 33.3 ms 30fps budget).
+## 5. Verification & Snapdragon® NPU Performance Evidence
+- **Qualcomm AI Hub Hosted Profiling (Snapdragon X2 Elite CRD)**:
+  - **100% NPU Offload** (0 CPU fallback operations) across all vision and biometric models:
+    - `mediapipe_face`: **0.6 ms** ([Job jgj7mx7xg](https://workbench.aihub.qualcomm.com/jobs/jgj7mx7xg/))
+    - `mediapipe_selfie`: **0.2 ms** INT8 / **0.4 ms** float ([Job jp41oqz1p](https://workbench.aihub.qualcomm.com/jobs/jp41oqz1p/))
+    - `zero_dce`: **1.4 ms** ([Job jpxlo71lp](https://workbench.aihub.qualcomm.com/jobs/jpxlo71lp/))
+    - `quicksrnetmedium`: **0.5 ms** ([Job jgd39wyrp](https://workbench.aihub.qualcomm.com/jobs/jgd39wyrp/))
+  - Total isolated model inference sum: $\approx 3.9 - 5.8\text{ ms}$ on Hexagon NPU (**>80% duty-cycle headroom** inside the 33.3 ms 30fps budget).
+- **Developer Workstation Baseline Comparison (Host CPU Fallback)**:
+  - Complete multi-modal pipeline runs in ~10.42 ms p50 on host CPU fallback. *(Portable CPU fallback provided for non-ARM CI/test workstations).*
 - **19 of 19 automated unit, smoke, ablation, and security tests pass**.
-- **CPU Fallback Baseline**: Complete multi-modal pipeline runs in ~10.42 ms p50 on host CPU fallback, proving robust cross-platform portability.
 - **Security Verified**: Zero non-loopback network egress enforced by automated socket testing.
 
 ---
