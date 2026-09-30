@@ -3,6 +3,11 @@
 > **Zero-Trust Multi-Modal Biometric & Acoustic Verification Shield for Snapdragon-Powered HP PCs**  
 > *Developed, Tested, and Profiled on Physical Snapdragon HP Hardware (HP OmniBook X) with Portable CPU Fallback*
 
+### 🏆 Snapdragon® AI Lab Challenge Submission Quick Links
+- 📄 **[Official Challenge Proposal](docs/HP_SNAPDRAGON_PROPOSAL.md)** — Comprehensive architecture, device optimization, and evaluation summary.
+- 📊 **[Pitch Deck Presentation](docs/PITCH_DECK.md)** — 7-slide core presentation deck for judges.
+- ⚡ **[Performance Benchmarks](docs/benchmarks.md)** — HP OmniBook X on-device empirical latency & Qualcomm AI Hub device farm metrics.
+
 ---
 
 ## 1. Executive Summary
