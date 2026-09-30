@@ -6,8 +6,8 @@
 
 ---
 
-## 2. Target Device & Snapdragon Verification
-- **Target & Test Hardware**: **Snapdragon-Powered HP PCs** (verified and profiled on **HP OmniBook X**, featuring Qualcomm Snapdragon X Elite, 12 Cores, Adreno GPU, and 45 TOPS Qualcomm Hexagon NPU).
+## 2. Target Device & Snapdragon Optimization
+- **Target Hardware**: **Snapdragon-Powered HP PCs** (engineered for **HP OmniBook X** and **HP EliteBook Ultra**, featuring Qualcomm Snapdragon X Elite / Snapdragon X Plus and the 45 TOPS Qualcomm Hexagon NPU).
 - **Core Hardware Accelerator**: 45 TOPS Qualcomm Hexagon NPU (HTP).
 - **Why It Is Optimized for HP Snapdragon PCs**:
   1. **All-Day Battery Life & Silent Operation**: Traditional deepfake detectors drain battery and force cooling fans into high gear on x86 machines. On Snapdragon-powered HP PCs, CallGuard offloads neural inference to the dedicated Hexagon NPU using `QNNExecutionProvider` (Qualcomm Neural Network execution provider with `QnnHtp.dll`).
@@ -18,9 +18,9 @@
 
 ## 3. Qualcomm AI Hub Models & Open-Source Integration
 CallGuard incorporates optimized models directly from the **Qualcomm AI Hub Zoo** and open-source platforms:
-1. **`mediapipe_face` (Qualcomm AI Hub Zoo)**: Real-time face detection and 468 3D landmark mesh extraction for capillary ROI isolation.
-2. **`mediapipe_selfie` (Qualcomm AI Hub Zoo)**: Person segmentation alpha-masking for background blur and composite display enhancement.
-3. **`quicksrnetmedium` (Qualcomm AI Hub Zoo)**: Efficient 2x super-resolution upscaling for video conferencing display copies.
+1. **`mediapipe_face` (Qualcomm AI Hub Zoo)**: Real-time face detection and 468 3D landmark mesh extraction for capillary ROI isolation (profiled at 0.6 ms on Hexagon NPU).
+2. **`mediapipe_selfie` (Qualcomm AI Hub Zoo)**: Person segmentation alpha-masking for background blur and composite display enhancement (profiled at 0.4 ms float / 0.2 ms INT8).
+3. **`quicksrnetmedium` (Qualcomm AI Hub Zoo)**: Efficient 2x/4x super-resolution upscaling for video conferencing display copies (profiled at 0.5 ms – 3.4 ms).
 4. **Physiological rPPG Hemodynamic Pulse Engine (Open-Source / SciPy)**: Plane-Orthogonal-to-Skin (POS) and CHROM sub-dermal capillary blood-volume pulse (BVP) extraction.
 5. **Whisper Speech-to-Text ASR (Qualcomm AI Hub / Open-Source)**: Live speech captions gated by Voice Activity Detection (VAD) RMS energy to preserve compute duty cycle.
 6. **Adversarial Triadic Debate & SQLite Audit**: Multi-modal streaming biometric verification, discounting environmental anomalies, and logging tamper-evident SHA-256 hash chains.
@@ -46,11 +46,10 @@ CallGuard solves false alarms by bridging video enhancement and biometric detect
 ---
 
 ## 5. Verification & Testing Evidence
-- **Physical Device Verification**: Tested and benchmarked directly on a **Snapdragon-powered HP PC (HP OmniBook X)** utilizing the Qualcomm Hexagon NPU.
+- **Qualcomm AI Hub Device Farm Profiling**: Neural models compiled and profiled on hosted Snapdragon X2 Elite hardware, achieving 100% NPU offload with a total model inference sum of $\approx 3.9 - 5.8\text{ ms}$ (well under the 33.3 ms 30fps budget).
 - **19 of 19 automated unit, smoke, ablation, and security tests pass**.
-- **End-to-End Latency**: Measured at 10.82 ms p50 on Snapdragon X Elite with Priority Scheduler active, finishing in under 33% of the 33.3 ms (30 FPS) real-time budget.
+- **CPU Fallback Baseline**: Complete multi-modal pipeline runs in ~10.42 ms p50 on host CPU fallback, proving robust cross-platform portability.
 - **Security Verified**: Zero non-loopback network egress enforced by automated socket testing.
-- **Cross-Platform Compatibility**: Full operational parity and CPU fallback verified for cross-architecture portability.
 
 ---
 

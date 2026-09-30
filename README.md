@@ -1,12 +1,12 @@
 # CallGuard NPU
 
 > **Zero-Trust Multi-Modal Biometric & Acoustic Verification Shield for Snapdragon-Powered HP PCs**  
-> *Developed, Tested, and Profiled on Physical Snapdragon HP Hardware (HP OmniBook X) with Portable CPU Fallback*
+> *Designed and Optimized for Snapdragon-Powered HP PCs | Validated via Qualcomm AI Hub Hosted Devices with Portable CPU Fallback*
 
 ### 🏆 Snapdragon® AI Lab Challenge Submission Quick Links
 - 📄 **[Official Challenge Proposal](docs/HP_SNAPDRAGON_PROPOSAL.md)** — Comprehensive architecture, device optimization, and evaluation summary.
 - 📊 **[Pitch Deck Presentation](docs/PITCH_DECK.md)** — 7-slide core presentation deck for judges.
-- ⚡ **[Performance Benchmarks](docs/benchmarks.md)** — HP OmniBook X on-device empirical latency & Qualcomm AI Hub device farm metrics.
+- ⚡ **[Performance Benchmarks](docs/benchmarks.md)** — Qualcomm AI Hub hosted device profiling (Snapdragon X2 Elite CRD) & CPU baseline metrics.
 
 ---
 
@@ -175,8 +175,8 @@ python -m pytest -v tests/
 3. **Zero Network Egress**:
    All inference, verification, and audit logging runs entirely on the local device. No user frames, audio snippets, or telemetry are transmitted externally.
 
-4. **Snapdragon Hardware Verification**:
-   Verified on physical Snapdragon-powered HP PCs (HP OmniBook X) with Qualcomm Hexagon NPU offloading via `QNNExecutionProvider`, alongside portable CPU fallback for cross-platform validation. Metric fields reflect empirical measurements across all execution stages.
+4. **Hardware Telemetry Honesty & AI Hub Device Profiling**:
+   Execution providers are dynamically detected and reported honestly (`CPU fallback` on local host vs. `QNNExecutionProvider` on physical Snapdragon hardware). Isolated neural models are compiled and profiled directly on Qualcomm AI Hub hosted devices (Snapdragon X2 Elite CRD with verifiable Qualcomm Workbench job links). Unmeasured local NPU paths are tagged `UNTESTED ON DEVICE`.
 
 ---
 

@@ -6,9 +6,9 @@ This document details hardware execution scopes, model weight fallbacks, and eva
 
 ## 1. Hardware-Specific Execution Scope
 
-### 1.1 Physical Snapdragon-Powered HP PC Execution
-- **Status**: **VERIFIED ON PHYSICAL HARDWARE (HP OmniBook X)**.
-- **Detail**: Tested directly on an HP OmniBook X powered by Qualcomm Snapdragon X Elite with Qualcomm Hexagon HTP NPU acceleration using `QNNExecutionProvider` (`backend_path="QnnHtp.dll"`, `htp_performance_mode="burst"`, `htp_precision="float16"`). The runtime also maintains a verified `CPUExecutionProvider` fallback for cross-platform portability.
+### 1.1 Physical Snapdragon Laptop Execution
+- **Status**: **UNTESTED ON DEVICE** (Neural models profiled on Qualcomm AI Hub hosted devices; local pipeline validated on CPU fallback).
+- **Detail**: The Qualcomm `QNNExecutionProvider` backend options (`backend_path="QnnHtp.dll"`, `htp_performance_mode="burst"`, `htp_precision="float16"`) follow Qualcomm's official specification. Individual neural models are verified on Qualcomm AI Hub hosted devices (Snapdragon X2 Elite CRD), while local pipeline execution on the development/CI host engages the verified `CPUExecutionProvider` fallback path. Local execution on consumer Snapdragon laptops remains marked `UNTESTED ON DEVICE`.
 
 ### 1.2 WASAPI System Audio Loopback
 - **Status**: **HARDWARE-DEPENDENT CAPTURE**.

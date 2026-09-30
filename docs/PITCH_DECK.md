@@ -57,14 +57,14 @@ Instead of naive black-box thresholding, CallGuard bridges display enhancement w
 
 ---
 
-## Slide 6: Verification & Physical Device Benchmarks
-### Proven Performance on HP OmniBook X (Snapdragon X Elite)
+## Slide 6: Verification & Qualcomm AI Hub Hosted Benchmarks
+### Proven NPU Offloading on Snapdragon X2 Elite CRD & Validated Host Baseline
 - **19 of 19 Automated Tests Passing**: Ring buffer monotonicity, zero network egress, Bayesian calibration, and tamper-evident SHA-256 hash chains.
-- **Measured Empirical Performance**:
-  - **End-to-End Latency**: **10.82 ms p50** (Snapdragon X Elite + Priority Scheduler).
-  - **Real-Time Headroom**: Completes in **under 33%** of the 33.3 ms (30 FPS) video call budget.
-  - **NPU Duty Cycle**: **28.4% / 60% budget** (cool, silent, fan-free HP laptop operation).
-  - **Dropped Frame Rate**: **0.00%** across all test cycles.
+- **Qualcomm AI Hub Hosted Profiling (Snapdragon X2 Elite CRD)**:
+  - **100% NPU Acceleration**: All vision & biometric models run 100% on Hexagon NPU with 0 CPU ops.
+  - **Sum of Profiled Models**: **$\approx 3.9 - 5.8\text{ ms}$** total inference vs. 33.3 ms (30 FPS) budget (**>80% duty-cycle headroom**).
+  - **Verifiable Qualcomm Workbench Jobs**: Includes direct links for `mediapipe_face` (0.6ms), `mediapipe_selfie` (0.2ms INT8), and `quicksrnetmedium` (0.5ms).
+- **Host CPU Fallback Baseline**: Pipeline finishes in **~10.42 ms p50** with **0.00% frame drops**, proving seamless cross-platform execution.
 
 ---
 
