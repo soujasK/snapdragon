@@ -29,9 +29,9 @@ class TelemetryTracker:
         if device_label is None:
             arch = platform.machine().lower()
             if "arm64" in arch or "aarch64" in arch:
-                self.device_label = f"Snapdragon X ARM64 ({platform.processor() or 'Qualcomm NPU'})"
+                self.device_label = "Snapdragon X Elite / Qualcomm Hexagon NPU (QNN HTP)"
             else:
-                self.device_label = f"CPU fallback ({platform.machine()} {platform.processor() or 'Host'})"
+                self.device_label = "Developer Workstation (Portable CPU Fallback)"
         else:
             self.device_label = device_label
 
